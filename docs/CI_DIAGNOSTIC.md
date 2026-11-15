@@ -24,3 +24,9 @@ Date : 15 novembre 2026. Statut : **BLOQUÉ pour la validation de la compilation
 - Aucune publication tant que ces preuves ne sont pas obtenues.
 
 Ce document est un **constat technique**, pas une validation pédagogique, institutionnelle, RGAA ou de sécurité.
+
+## Vérification GitHub Actions — 15 novembre 2026
+
+Le workflow du commit `70d5f01605443aac0316bdea06f30d72ba596e2b` a été exécuté sur `main` : [exécution 43766898747](https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/43766898747), conclusion **success**. Les étapes « Installer les dépendances sans scripts tiers », « Exécuter les tests » et « Vérifier TypeScript et compiler Vite » portent toutes la conclusion **success** dans le détail des jobs GitHub Actions. Il s'agit de preuves de réussite sur les sources réelles pour ce commit, contrairement au diagnostic local antérieur.
+
+**Blocage restant, distinct :** l'installation utilise toujours `npm install` sans verrou de dépendances. La reproductibilité avec `npm ci` n'est donc pas établie. Une nouvelle tentative depuis l'environnement local de diagnostic échoue encore à résoudre `registry.npmjs.org` (DNS). Ne pas fabriquer de verrou, ne pas remplacer `npm install` par `npm ci` tant que le verrou vérifié n'est pas enregistré. La validation pédagogique humaine, l'accessibilité complète et la publication restent non réalisées.
