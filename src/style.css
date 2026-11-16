@@ -7,3 +7,12 @@ main[data-mode=projecteur] nav button[aria-pressed="true"]{border-color:#000}
 /* Contraste des surtitres dans les modes sombre et projecteur. */
 main[data-mode=sombre] .eyebrow{color:#8de6e9}
 main[data-mode=projecteur] .eyebrow{color:#00545c}
+
+/* Activité rédigée M01 : saisie lisible dans les trois modes. */
+.active-task{margin-top:28px;border-top:1px solid currentColor;padding-top:18px}
+.active-task label{display:block;font-weight:700;margin-bottom:8px}
+.active-task textarea{display:block;width:100%;margin-bottom:12px;padding:12px;border:2px solid #8c9db3;border-radius:8px;font:inherit;color:inherit;background:transparent;resize:vertical}
+.active-task textarea:focus-visible{outline:3px solid #d87819;outline-offset:3px}
+main[data-mode=sombre] .active-task textarea:focus-visible{outline-color:#ffbd70}
+main[data-mode=projecteur] .active-task textarea:focus-visible{outline-color:#a34d00}
+.local-note{font-size:.85rem;line-height:1.5}
