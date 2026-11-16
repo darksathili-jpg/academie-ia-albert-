@@ -34,3 +34,9 @@ Aucune donnée personnelle réelle d'élève, aucun secret Albert et aucun appel
 3. Après décision de sortie L0, commencer L1 par un lot borné, avec tests et contrôle humain distincts.
 
 Ce rapport documente les lacunes de preuve ; il ne certifie ni L0, ni M01, ni le respect institutionnel du produit fini.
+
+## Complément de preuve CI — 16 novembre 2026
+
+L'exécution GitHub Actions [43814181604](https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/43814181604) a été interrogée directement : le job « Tests et compilation — sans publication » est `completed / success`. Les étapes « Vérifier l'installation reproductible », « Exécuter les tests » et « Vérifier TypeScript et compiler Vite » portent chacune la conclusion `success`. Cette preuve concerne **cette exécution historique**, pas nécessairement le commit qui ajoute le présent rapport ou ce complément. Aucun test local ni test navigateur supplémentaire n'a été exécuté ici.
+
+La preuve CI antérieure ne remplace ni le relevé de temps L0 (non disponible), ni la revue pédagogique humaine (non réalisée), ni l'audit d'accessibilité. **Clôture L0 : BLOCKED**, inchangée. Aucune publication autorisée sur cette seule base.
