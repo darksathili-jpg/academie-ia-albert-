@@ -26,3 +26,18 @@ for (const file of documents) {
     }
   });
 }
+
+test('Le cahier des charges conserve les garde-fous L0 essentiels', () => {
+  const contract = readFileSync('docs/CAHIER_DES_CHARGES.md', 'utf8');
+  const checks = [
+    ['protection des données', /Pas de données personnelles réelles d’élèves|Pas de données personnelles réelles d'élèves/],
+    ['clés API', /Pas de clé API dans le code client/],
+    ['validation pédagogique humaine', /audit pédagogique humain/],
+    ['absence de compte obligatoire', /Pas d’obligation de créer un compte|Pas d'obligation de créer un compte/],
+    ['accessibilité', /Accessibilité\s*:/],
+    ['absence de notation automatique décisionnelle', /aucune notation automatique d’élève à effet décisionnel|aucune notation automatique d'élève à effet décisionnel/],
+  ];
+  for (const [name, pattern] of checks) {
+    assert.match(contract, pattern, `Exigence L0 manquante : ${name}`);
+  }
+});
