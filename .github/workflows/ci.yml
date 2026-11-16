@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
-      contents: read
+      contents: write # Nécessaire uniquement au commit du verrou après tests verts
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
@@ -25,21 +25,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      # Transition temporaire : produire un verrou depuis le runner réseau.
-      # Après récupération et vérification de l'artifact, versionner package-lock.json
-      # puis remplacer cette étape par npm ci, sans génération.
-      - name: Générer un verrou npm provisoire
+      - name: Générer le verrou seulement s'il est absent
+        if: ${{ hashFiles('package-lock.json') == '' }}
         run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
       - name: Vérifier l'installation reproductible
         run: npm ci --ignore-scripts --no-audit --no-fund
-      - name: Conserver le verrou pour vérification humaine et commit ultérieur
-        uses: actions/upload-artifact@v4
-        with:
-          name: package-lock-candidat
-          path: package-lock.json
-          if-no-files-found: error
-          retention-days: 7
       - name: Exécuter les tests
         run: npm test
       - name: Vérifier TypeScript et compiler Vite
         run: npm run build
+      # Le verrou n'est enregistré qu'après la réussite de tous les contrôles.
+      # L'étape est sans effet dès que package-lock.json est versionné.
+      - name: Versionner le verrou après contrôles verts
+        if: ${{ hashFiles('package-lock.json') == '' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- package-lock.json
+          git commit -m "build: versionner le verrou npm vérifié"
+          git push origin HEAD:main
