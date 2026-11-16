@@ -30,3 +30,19 @@ jobs:
         run: npm test
       - name: Vérifier TypeScript et compiler Vite
         run: npm run build
+      - name: Consigner les preuves techniques
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          {
+            echo "## Contrôles techniques L0"
+            echo ""
+            echo "- Révision : \`$GITHUB_SHA\`"
+            echo "- Branche : \`$GITHUB_REF_NAME\`"
+            echo "- Statut du job : \`$JOB_STATUS\`"
+            echo "- Commandes prévues : \`npm ci --ignore-scripts --no-audit --no-fund\`, \`npm test\`, \`npm run build\`"
+            echo "- Détails et éventuels échecs : consulter les étapes du job ci-dessus."
+            echo "- Validation pédagogique humaine : non réalisée par ce workflow."
+            echo "- Publication : aucune."
+          } >> "$GITHUB_STEP_SUMMARY"
