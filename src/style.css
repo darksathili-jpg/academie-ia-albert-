@@ -3,3 +3,7 @@
 nav button[aria-pressed="true"]{font-weight:800;border-width:2px;text-decoration:underline;text-underline-offset:4px}
 main[data-mode=sombre] nav button[aria-pressed="true"]{border-color:#ffbd70}
 main[data-mode=projecteur] nav button[aria-pressed="true"]{border-color:#000}
+
+/* Contraste des surtitres dans les modes sombre et projecteur. */
+main[data-mode=sombre] .eyebrow{color:#8de6e9}
+main[data-mode=projecteur] .eyebrow{color:#00545c}
