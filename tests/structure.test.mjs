@@ -69,6 +69,9 @@ test('Tous les fichiers applicatifs restent sans accès réseau direct ni secret
     const source = read(file);
     assert.doesNotMatch(source, /\b(?:fetch|XMLHttpRequest|WebSocket|EventSource|sendBeacon)\s*\(/, file);
     assert.doesNotMatch(source, /\b(?:window|globalThis|self)\s*\.\s*(?:fetch|XMLHttpRequest|WebSocket|EventSource)\b/, file);
+    // Couvrir aussi l'accès calculé et l'appel optionnel, sans prétendre à un audit exhaustif.
+    assert.doesNotMatch(source, /\b(?:window|globalThis|self)\s*(?:\?\.)?\s*\[\s*['"](?:fetch|XMLHttpRequest|WebSocket|EventSource)['"]\s*\]/, file);
+    assert.doesNotMatch(source, /\b(?:fetch|sendBeacon)\s*\?\.\s*\(/, file);
     assert.doesNotMatch(source, /\b(?:axios|ky|superagent)\s*(?:\.|\()/, file);
     assert.doesNotMatch(source, /\bimport\s*(?:\(|[^;\n]*\bfrom\s*)['"](?:axios|ky|superagent)['"]/, file);
     assert.doesNotMatch(source, /\b(?:new\s+WebSocket|new\s+EventSource|navigator\.sendBeacon)\b/, file);
