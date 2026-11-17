@@ -15,11 +15,18 @@ Date de constat : 17 novembre 2026. Statut : **À VÉRIFIER — lot non clôtur�
 - Étapes « Vérifier l'installation reproductible », « Exécuter les tests », « Vérifier TypeScript et compiler Vite » et « Consigner les preuves techniques » : chacune `completed / success`.
 - Le workflow ne contient aucune étape de déploiement. Ce constat n'est **pas** une preuve d'audit pédagogique, d'accessibilité ou de sécurité exhaustive.
 
+## Vérification complémentaire — tests des liens internes (17 novembre 2026)
+- Commit testé : `d579e67c201d0bd42880e46db9a28c6d8e2beede`.
+- Exécution GitHub Actions : https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44143906532 (n° 46, événement `push`, branche `main`, conclusion `success`, 17 novembre 2026 à 18:04 UTC).
+- Job « Tests et compilation — sans publication » : `success` ; étapes installation reproductible, tests, compilation TypeScript/Vite et consignation des preuves : `success`.
+- `tests/links.test.mjs` contient trois tests statiques (ressources locales de `index.html`, ancres internes littérales et `aria-controls` littéraux). Leur exécution est couverte par l'étape globale de tests réussie ; aucun parcours réel dans un navigateur n'est ainsi démontré.
+- Ces contrôles n'inspectent pas tous les liens construits dynamiquement, ne prouvent pas l'accessibilité et ne constituent pas un audit de sécurité exhaustif.
+
 ## Contrôles encore absents ou non démontrés
 - Lint dédié : non défini dans `package.json` ; la compilation TypeScript ne le remplace pas.
 - Tests de navigation en navigateur, parcours mobile et clavier : non attestés par cette CI.
 - Audit d'accessibilité automatisé et contrôle manuel RGAA : non attestés.
-- Audit des liens internes et des licences des ressources : non attesté.
+- Liens internes : contrôle statique partiel automatisé, exécuté avec succès sur `d579e67` ; audit exhaustif des liens dynamiques et des licences des ressources : non attesté.
 - Relecture scientifique et pédagogique humaine nominative, datée et versionnée : **non réalisée / non fournie**.
 - Captures d'écran des interfaces clés : non fournies.
 - Temps de travail effectif cumulé de L0 : **non mesuré**, donc impossible de prouver le respect du budget de 2 h.
@@ -28,6 +35,6 @@ Date de constat : 17 novembre 2026. Statut : **À VÉRIFIER — lot non clôtur�
 **PASS technique limité** pour les étapes CI observées sur la révision citée ; **BLOCKED pour la clôture L0** et pour toute déclaration de validation pédagogique ou de conformité institutionnelle. Ne pas publier de nouveaux contenus pédagogiques comme « VALIDÉS » sans preuve de relecture humaine.
 
 ## Prochaine action prioritaire
-Mettre en place et exécuter un contrôle reproductible des liens internes ou un parcours navigateur minimal, puis joindre son résultat au rapport. Ne pas confondre ajout d'un test et réussite de son exécution. Le passage à L1 nécessite un arbitrage explicite des preuves encore manquantes.
+Mettre en place et exécuter un parcours navigateur minimal avec contrôle clavier, puis joindre son résultat au rapport. Ne pas confondre ajout d'un test et réussite de son exécution. Le passage à L1 nécessite un arbitrage explicite des preuves encore manquantes.
 
 Ce document consigne des faits techniques et des lacunes, sans approbation du ministère, de la CNIL ou d'un réviseur humain.
