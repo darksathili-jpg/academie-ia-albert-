@@ -32,3 +32,11 @@ test('Les attributs aria-controls statiques ciblent des identifiants existants',
   const targets = [...app.matchAll(/\baria-controls\s*=\s*["']([^"']+)["']/g)].map(m => m[1]);
   for (const target of targets) assert.ok(ids.has(target), 'Cible aria-controls introuvable : ' + target);
 });
+
+// Régression ciblée : la cible doit rester montée même lorsque le panneau est replié.
+// Ce contrôle statique ne remplace pas un test dans un navigateur ni un audit RGAA.
+test('Le panneau aria-controls reste présent et est masqué par hidden', () => {
+  assert.match(app, /aria-controls="verification-checklist"/, 'Commande du panneau absente');
+  assert.match(app, /<div\s+id="verification-checklist"\s+className="feedback"\s+hidden=\{!showChecklist\}>/, 'La cible doit rester montée et être masquée par hidden');
+  assert.doesNotMatch(app, /\{showChecklist\s*&&\s*<div\s+id="verification-checklist"/, 'La cible ne doit pas être montée conditionnellement');
+});
