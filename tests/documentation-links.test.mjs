@@ -21,7 +21,8 @@ for (const file of documents) {
       const pathname = decodeURIComponent(href.split('#')[0].split('?')[0]);
       if (!pathname) continue;
       const target = resolve(dirname(file), pathname);
-      assert.ok(target.startsWith(resolve('.') + sep), `Lien hors dépôt dans ${file} : ${href}`);
+      const root = resolve('.');
+      assert.ok(target === root || target.startsWith(root + sep), `Lien hors dépôt dans ${file} : ${href}`);
       assert.ok(existsSync(target), `Lien local cassé dans ${file} : ${href}`);
     }
   });
