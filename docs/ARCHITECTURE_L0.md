@@ -40,3 +40,11 @@ Avant de déclarer L0 terminé : produire une preuve horodatée des contrôles, 
 - [Cadre d'usage de l'IA en éducation](https://www.education.gouv.fr/cadre-d-usage-de-l-ia-en-education-450647), ministère chargé de l'Éducation nationale, référence à vérifier avant validation pédagogique.
 - [CNIL — usage d'un système d'IA par un enseignant](https://www.cnil.fr/fr/enseignant-usage-systeme-ia), référence à vérifier avant validation.
 - [Éduscol — NSI](https://eduscol.education.gouv.fr/5823/programmes-et-ressources-en-numerique-et-sciences-informatiques-voie-g), référence à vérifier avant validation.
+
+## Critères de recette observables pour M01 (proposition à vérifier)
+
+La recette de M01 doit produire des preuves distinctes pour chaque capacité : (1) expliquer que la génération de texte est probabiliste sans confondre plausibilité et vérité ; (2) distinguer le service Albert, son interface de programmation d'application et les modèles qu'il expose ; (3) identifier et corriger une affirmation inventée à l'aide d'une source vérifiable ; (4) transformer une consigne contenant des données personnelles en exemple fictif ; (5) argumenter la plus-value pédagogique et les limites d'un usage d'IA ; (6) réaliser une activité ouverte, non limitée à un questionnaire à choix multiples, et une tâche de transfert ; (7) exporter localement sa progression ; (8) utiliser les interactions essentielles au clavier et sur mobile.
+
+Pour chaque critère, conserver : version du module, scénario de test, résultat observé, preuve et statut. Les contrôles automatiques peuvent établir le fonctionnement technique, **pas** l'exactitude pédagogique ni l'accord d'un réviseur humain. Toute ressource sans relecture humaine tracée reste « À VÉRIFIER » et n'est pas publiable comme contenu validé.
+
+Cette section définit une **recette future**, non une exécution ni une homologation.
