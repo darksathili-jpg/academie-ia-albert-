@@ -73,3 +73,17 @@ test('Tous les fichiers applicatifs restent sans accès réseau direct ni secret
     assert.doesNotMatch(source, /(?:api[_-]?key|authorization\s*:\s*['"]bearer|sk-[A-Za-z0-9_-]{16,})/i, file);
   }
 });
+
+test('La CI est limitée à main et aux permissions de lecture', () => {
+  assert.match(workflow, /push:\s*\n\s*branches:\s*\[main\]/);
+  assert.match(workflow, /permissions:\s*\n\s*contents:\s*read/);
+  assert.doesNotMatch(workflow, /\b(?:contents|pages|id-token|actions):\s*write\b/);
+  assert.doesNotMatch(workflow, /\bpull_request_target\s*:/);
+  assert.match(workflow, /actions\/checkout@v4/);
+  assert.match(workflow, /actions\/setup-node@v4/);
+  assert.match(workflow, /node-version:\s*['"]22['"]/);
+  const scripts = JSON.parse(read('package.json')).scripts;
+  assert.match(scripts.test, /node --test/);
+  assert.match(scripts.build, /tsc --noEmit/);
+  assert.match(scripts.build, /vite build/);
+});
