@@ -53,3 +53,16 @@ test('La CI L0 reste en lecture seule, sans publication automatique', () => {
   assert.match(workflow, /Validation pédagogique humaine : non réalisée/, 'Distinction de validation absente');
   assert.doesNotMatch(workflow, /actions\/deploy-pages|peaceiris\/actions-gh-pages|npm run deploy/, 'Publication non autorisée par L0');
 });
+
+test('Le pilote M01 conserve les garde-fous de confidentialité et de vérification', () => {
+  // Contrôle statique ciblé : il ne remplace ni un test navigateur ni un audit RGPD.
+  const app = readFileSync('src/main.tsx', 'utf8');
+  assert.match(app, /Vérifier la référence dans la source officielle/, 'Vérification indépendante absente');
+  assert.match(app, /sans notation automatique/, 'Mention de non-notation absente');
+  assert.match(app, /localStorage\.setItem\(STORAGE_KEY/, 'Enregistrement local absent');
+  assert.match(app, /localStorage\.removeItem\(STORAGE_KEY\)/, 'Effacement du brouillon absent');
+  assert.match(app, /Exporter en fichier texte/, 'Export local absent');
+  assert.match(app, /Aucun appel réel à Albert/, 'Statut de la démonstration absent');
+  assert.match(app, /ne saisissez aucune donnée personnelle/, 'Avertissement de confidentialité absent');
+  assert.doesNotMatch(app, /\bfetch\s*\(|\bXMLHttpRequest\b|\bsendBeacon\s*\(/, 'Appel réseau inattendu dans le pilote M01');
+});
