@@ -27,3 +27,27 @@ test('La CI bloque en cas d’échec des tests ou de la compilation', () => {
   assert.match(workflow, /npm run build/);
   assert.doesNotMatch(workflow, /continue-on-error:\s*true/);
 });
+
+test('Le cahier des charges bloque les secrets et les données réelles d’élèves', () => {
+  const cahier = read('docs/CAHIER_DES_CHARGES.md');
+  assert.match(cahier, /Pas de données personnelles réelles d'élèves/);
+  assert.match(cahier, /Pas de clé API dans le code client/);
+  assert.match(cahier, /audit pédagogique humain/);
+  assert.match(cahier, /sans Albert/);
+});
+
+test('La frontière statique interdit les appels Albert directs', () => {
+  const architecture = read('docs/ARCHITECTURE_L0.md');
+  assert.match(architecture, /Aucun appel direct depuis le navigateur/);
+  assert.match(architecture, /données fictives/);
+  assert.match(architecture, /Web Worker isolé/);
+  assert.match(architecture, /aucune décision automatique sur la note/);
+});
+
+test('La CI conserve un blocage effectif et ne publie pas', () => {
+  assert.match(workflow, /timeout-minutes:\s*10/);
+  assert.match(workflow, /npm ci --ignore-scripts --no-audit --no-fund/);
+  assert.match(workflow, /npm test/);
+  assert.match(workflow, /npm run build/);
+  assert.doesNotMatch(workflow, /actions\/deploy-pages|peaceiris\/actions-gh-pages|npm run deploy/);
+});
