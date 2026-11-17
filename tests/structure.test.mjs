@@ -96,7 +96,7 @@ test('La page statique ne charge aucune ressource distante ni traceur tiers', ()
   const css = read('src/style.css');
   // Contrôle conservateur : aucun script, iframe, image ou feuille de style distante.
   // Les liens de référence vers des sites officiels restent autorisés dans les contenus.
-  assert.doesNotMatch(html, /<(?:script|iframe|img|link)\\b[^>]*\\b(?:src|href)\\s*=\\s*["']\\s*(?:https?:)?\\/\\//i);
-  assert.doesNotMatch(html, /\\b(?:srcset|ping)\\s*=/i);
-  assert.doesNotMatch(css, /@import\\b|url\\(\\s*["']?\\s*(?:https?:)?\\/\\//i);
+  assert.doesNotMatch(html, /<(?:script|iframe|img|link)\b[^>]*\b(?:src|href)\s*=\s*["']\s*(?:https?:)?\/\//i);
+  assert.doesNotMatch(html, /\b(?:srcset|ping)\s*=/i);
+  assert.doesNotMatch(css, /@import\b|url\(\s*["']?\s*(?:https?:)?\/\//i);
 });
