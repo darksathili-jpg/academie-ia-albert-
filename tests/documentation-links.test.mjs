@@ -41,3 +41,14 @@ test('Le cahier des charges conserve les garde-fous L0 essentiels', () => {
     assert.match(contract, pattern, `Exigence L0 manquante : ${name}`);
   }
 });
+
+test('La CI L0 reste en lecture seule, sans publication automatique', () => {
+  const workflow = readFileSync('.github/workflows/ci.yml', 'utf8');
+  assert.match(workflow, /permissions:\s*\n\s+contents:\s*read\b/, 'Permissions minimales manquantes');
+  assert.match(workflow, /run:\s*npm ci --ignore-scripts --no-audit --no-fund/, 'Installation verrouillée absente');
+  assert.match(workflow, /run:\s*npm test\b/, 'Tests absents');
+  assert.match(workflow, /run:\s*npm run build\b/, 'Compilation absente');
+  assert.match(workflow, /if:\s*always\(\)/, 'Résumé des échecs absent');
+  assert.match(workflow, /Validation pédagogique humaine : non réalisée/, 'Distinction de validation absente');
+  assert.doesNotMatch(workflow, /actions\/deploy-pages|peaceiris\/actions-gh-pages|npm run deploy/, 'Publication non autorisée par L0');
+});
