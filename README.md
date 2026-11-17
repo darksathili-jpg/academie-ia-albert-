@@ -43,3 +43,7 @@ React, TypeScript et Vite ; contenus structurés et versionnés ; exercices inte
 ## Conditions d'arrêt
 
 Bloquer la livraison en cas d'erreur scientifique majeure, de test essentiel en échec, de risque de sécurité ou de dépassement non arbitré du budget. Les automatisations ne doivent pas prétendre avoir développé ou publié sans preuve de commit, de tests et de déploiement.
+
+## Vérification des contributions automatisées
+
+Une modification automatisée est une proposition technique, **pas une validation pédagogique humaine**. Avant toute publication de contenus destinés aux enseignants ou aux élèves, conserver une trace de la relecture humaine (identité ou rôle du réviseur, date, version examinée et décision). En l'absence de cette preuve, conserver le statut **À VÉRIFIER** ; ne pas afficher **VALIDÉ**. Les contrôles automatiques ne remplacent pas cette étape.
