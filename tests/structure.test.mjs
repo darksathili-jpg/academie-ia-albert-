@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { readFileSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
 
 const read = path => readFileSync(path, 'utf8');
 const app = read('src/main.tsx');
@@ -50,4 +51,25 @@ test('La CI conserve un blocage effectif et ne publie pas', () => {
   assert.match(workflow, /npm test/);
   assert.match(workflow, /npm run build/);
   assert.doesNotMatch(workflow, /actions\/deploy-pages|peaceiris\/actions-gh-pages|npm run deploy/);
+});
+
+/*
+ * Contrôle de frontière statique : parcourir tous les fichiers sources,
+ * et pas seulement main.tsx. Ce test n'est pas un audit de sécurité complet.
+ */
+test('Tous les fichiers applicatifs restent sans accès réseau direct ni secret', () => {
+  const walk = dir => readdirSync(dir, { withFileTypes: true }).flatMap(entry => {
+    const path = join(dir, entry.name);
+    if (entry.isDirectory()) return walk(path);
+    return /\.(?:[cm]?[jt]sx?)$/.test(entry.name) ? [path] : [];
+  });
+  const files = walk('src');
+  assert.ok(files.length > 0, 'Aucun fichier source contrôlé');
+  for (const file of files) {
+    const source = read(file);
+    assert.doesNotMatch(source, /\b(?:fetch|XMLHttpRequest|WebSocket|EventSource|sendBeacon)\s*\(/, file);
+    assert.doesNotMatch(source, /\b(?:new\s+WebSocket|new\s+EventSource|navigator\.sendBeacon)\b/, file);
+    assert.doesNotMatch(source, /\b(?:import\.meta\.env|process\.env)\b/, file);
+    assert.doesNotMatch(source, /(?:api[_-]?key|authorization\s*:\s*['"]bearer|sk-[A-Za-z0-9_-]{16,})/i, file);
+  }
 });
