@@ -90,3 +90,13 @@ test('La CI est limitée à main et aux permissions de lecture', () => {
   assert.match(scripts.build, /tsc --noEmit/);
   assert.match(scripts.build, /vite build/);
 });
+
+test('La page statique ne charge aucune ressource distante ni traceur tiers', () => {
+  const html = read('index.html');
+  const css = read('src/style.css');
+  // Contrôle conservateur : aucun script, iframe, image ou feuille de style distante.
+  // Les liens de référence vers des sites officiels restent autorisés dans les contenus.
+  assert.doesNotMatch(html, /<(?:script|iframe|img|link)\\b[^>]*\\b(?:src|href)\\s*=\\s*["']\\s*(?:https?:)?\\/\\//i);
+  assert.doesNotMatch(html, /\\b(?:srcset|ping)\\s*=/i);
+  assert.doesNotMatch(css, /@import\\b|url\\(\\s*["']?\\s*(?:https?:)?\\/\\//i);
+});
