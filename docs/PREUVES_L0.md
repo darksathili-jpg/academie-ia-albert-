@@ -22,6 +22,13 @@ Date de constat : 17 novembre 2026. Statut : **À VÉRIFIER — lot non clôtur�
 - `tests/links.test.mjs` contient trois tests statiques (ressources locales de `index.html`, ancres internes littérales et `aria-controls` littéraux). Leur exécution est couverte par l'étape globale de tests réussie ; aucun parcours réel dans un navigateur n'est ainsi démontré.
 - Ces contrôles n'inspectent pas tous les liens construits dynamiquement, ne prouvent pas l'accessibilité et ne constituent pas un audit de sécurité exhaustif.
 
+## Vérification du correctif JSX M01 — 18 novembre 2026
+- Commit vérifié : `91f06a81fdc518e8d01279bdd4f7699968bb0cfc` (correction d'une accolade JSX superflue dans `src/main.tsx`).
+- Exécution CI n° 50 : https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44194693154 ; déclenchement `push`, branche `main`, SHA correspondant, état `completed`, conclusion `success` (17 novembre 2026, 22:55 UTC).
+- Job « Tests et compilation — sans publication » : `success`. Étapes « Vérifier l'installation reproductible », « Exécuter les tests », « Vérifier TypeScript et compiler Vite », « Consigner les preuves techniques » : toutes `success`, selon l'API des jobs GitHub Actions.
+- Il s'agit d'une preuve de réussite de la CI pour ce commit, pas d'un audit navigateur, RGAA, sécurité, licences ou d'une validation pédagogique humaine. Aucun test local supplémentaire exécuté pour ce constat.
+- Temps effectif de cette vérification : non mesuré ; le budget cumulé L0 demeure non vérifiable.
+
 ## Contrôles encore absents ou non démontrés
 - Lint dédié : non défini dans `package.json` ; la compilation TypeScript ne le remplace pas.
 - Tests de navigation en navigateur, parcours mobile et clavier : non attestés par cette CI.
