@@ -39,7 +39,7 @@ try {
   assert.match(await page.getByRole('status').first().innerText(), /Bonne démarche/);
   const draft = 'Vérifier la source officielle et sa date avant toute diffusion.';
   await page.getByLabel(/Votre procédure/).fill(draft);
-  const toggle = page.getByRole('button', { name: /Afficher les critères/ });
+  const toggle = page.locator('button[aria-controls="verification-checklist"]');
   await toggle.focus();
   await page.keyboard.press('Enter');
   assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
