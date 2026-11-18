@@ -37,7 +37,7 @@ jobs:
         id: browser_install
         run: |
           npm install --no-save --package-lock=false --ignore-scripts --no-audit --no-fund playwright@1.56.1
-          npx playwright install --with-deps chromium
+          npx playwright install chromium
       - name: Exécuter la recette navigateur M01
         id: browser_test
         run: node tests/browser-smoke.mjs
@@ -60,6 +60,8 @@ jobs:
             echo "- Installation (npm ci) : \`$INSTALL_OUTCOME\`"
             echo "- Tests (npm test) : \`$TESTS_OUTCOME\`"
             echo "- Compilation (npm run build) : \`$BUILD_OUTCOME\`"
+            echo "- Installation navigateur : \`$BROWSER_INSTALL_OUTCOME\`"
+            echo "- Recette navigateur M01 : \`$BROWSER_TEST_OUTCOME\`"
             echo "- Valeurs possibles : success, failure, skipped ou cancelled ; une étape ignorée ne vaut pas réussite."
             echo "- Détails et éventuels échecs : consulter les étapes du job ci-dessus."
             echo "- Validation pédagogique humaine : non réalisée par ce workflow."
