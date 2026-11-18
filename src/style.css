@@ -16,3 +16,12 @@ main[data-mode=projecteur] .eyebrow{color:#00545c}
 main[data-mode=sombre] .active-task textarea:focus-visible{outline-color:#ffbd70}
 main[data-mode=projecteur] .active-task textarea:focus-visible{outline-color:#a34d00}
 .local-note{font-size:.85rem;line-height:1.5}
+
+/* Focus clavier perceptible en mode sombre sur les boutons, listes et radios. */
+main[data-mode=sombre] button:focus-visible,
+main[data-mode=sombre] select:focus-visible,
+main[data-mode=sombre] input:focus-visible{outline-color:#ffbd70}
+/* En mode projecteur, renforcer le contraste du focus sans recourir à la couleur seule. */
+main[data-mode=projecteur] button:focus-visible,
+main[data-mode=projecteur] select:focus-visible,
+main[data-mode=projecteur] input:focus-visible{outline-color:#a34d00}
