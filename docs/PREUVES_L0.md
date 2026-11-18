@@ -68,3 +68,11 @@ Date de constat : 17 novembre 2026. Statut : **À VÉRIFIER — lot non clôtur�
 Mettre en place et exécuter un parcours navigateur minimal avec contrôle clavier, puis joindre son résultat au rapport. Ne pas confondre ajout d'un test et réussite de son exécution. Le passage à L1 nécessite un arbitrage explicite des preuves encore manquantes.
 
 Ce document consigne des faits techniques et des lacunes, sans approbation du ministère, de la CNIL ou d'un réviseur humain.
+
+## Recette navigateur du commit 87a19a4 — constat du 18 novembre 2026
+- SHA contrôlé : `87a19a4891771e372cb67e0f00de35eddf8aaf7e` sur `main`.
+- Exécution CI n° 63 : https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44320395333 ; événement `push`, démarrée le 18 novembre 2026 à 14:05 UTC, état `completed`, conclusion **`cancelled`** (mise à jour à 14:15 UTC).
+- D'après les étapes du job : installation reproductible **success**, tests **success**, compilation TypeScript/Vite **success**, installation Playwright **success** ; recette navigateur M01 **cancelled**. Il est donc incorrect de déclarer le parcours navigateur réussi ou échoué sur la base de cette exécution.
+- Aucune nouvelle exécution des tests pendant ce constat : seules les étapes CI ont été consultées. Le motif exact de l'annulation n'est pas établi par ces métadonnées.
+- Temps effectif de travail : non mesuré ; aucune relecture pédagogique humaine, aucun audit RGAA, aucune publication autorisée. **BLOCKED** pour la recette navigateur et la clôture L0.
+- Prochaine action : déterminer la cause de l'annulation du job puis obtenir une exécution complète de la recette navigateur avant toute décision de livraison.
