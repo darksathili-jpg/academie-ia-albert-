@@ -29,6 +29,13 @@ Date de constat : 17 novembre 2026. Statut : **À VÉRIFIER — lot non clôtur�
 - Il s'agit d'une preuve de réussite de la CI pour ce commit, pas d'un audit navigateur, RGAA, sécurité, licences ou d'une validation pédagogique humaine. Aucun test local supplémentaire exécuté pour ce constat.
 - Temps effectif de cette vérification : non mesuré ; le budget cumulé L0 demeure non vérifiable.
 
+## Vérification des garde-fous statiques de confidentialité — 18 novembre 2026
+- Commit contrôlé : `b05c747681dd46ec9a73747f8009ebbe2e460fec` (ajout de `tests/privacy.test.mjs`).
+- Exécution GitHub Actions n° 53 : https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44234215112 ; événement `push`, branche `main`, SHA correspondant, état `completed`, conclusion `success` (18 novembre 2026, 03:59 UTC).
+- Job « Tests et compilation — sans publication » : `success`. Étapes installation reproductible, tests, TypeScript/Vite et consignation des preuves : `success`, selon les résultats des jobs GitHub Actions consultés.
+- L'étape `npm test` réussie inclut les trois tests statiques de `tests/privacy.test.mjs` ; aucun test navigateur ni contrôle réseau dynamique n'est démontré. La réussite ne prouve pas la conformité RGPD, RGAA ou la validation pédagogique humaine.
+- Temps effectif : non mesuré ; budget cumulé L0 non vérifiable. Aucune publication autorisée par cette seule preuve.
+
 ## Contrôles encore absents ou non démontrés
 - Lint dédié : non défini dans `package.json` ; la compilation TypeScript ne le remplace pas.
 - Tests de navigation en navigateur, parcours mobile et clavier : non attestés par cette CI.
