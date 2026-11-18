@@ -40,3 +40,21 @@ test('Le panneau aria-controls reste présent et est masqué par hidden', () => 
   assert.match(app, /<div\s+id="verification-checklist"\s+className="feedback"\s+hidden=\{!showChecklist\}>/, 'La cible doit rester montée et être masquée par hidden');
   assert.doesNotMatch(app, /\{showChecklist\s*&&\s*<div\s+id="verification-checklist"/, 'La cible ne doit pas être montée conditionnellement');
 });
+
+
+// Garde-fous structurels : ces assertions vérifient le code JSX, pas le comportement
+// du focus ni l'annonce réelle par les technologies d'assistance.
+test('Les commandes du panneau sont des boutons natifs et exposent leur état', () => {
+  assert.match(app, /<button type="button" onClick=\{\(\)=>setShowChecklist\(!showChecklist\)\} aria-expanded=\{showChecklist\} aria-controls="verification-checklist"/);
+  assert.match(app, /<div\s+id="verification-checklist"[^>]*hidden=\{!showChecklist\}/);
+});
+
+test('Les champs de l’activité ont des libellés et le retour a un statut accessible', () => {
+  for (const id of ['discipline', 'verification-plan']) {
+    assert.ok(app.includes('htmlFor="' + id + '"'), 'Libellé manquant : ' + id);
+    assert.ok(app.includes('id="' + id + '"'), 'Champ manquant : ' + id);
+  }
+  assert.match(app, /<fieldset><legend>Choisissez une réponse<\/legend>/);
+  assert.match(app, /<p role="status" className="feedback">/);
+  assert.match(app, /<p role="status" className="local-note">/);
+});
