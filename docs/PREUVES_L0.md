@@ -44,6 +44,14 @@ Date de constat : 17 novembre 2026. Statut : **À VÉRIFIER — lot non clôtur�
 - Ces tests inspectent le code source : ils ne démontrent ni le comportement réel du focus et du clavier dans un navigateur, ni la conformité RGAA/WCAG, ni une validation pédagogique humaine.
 - Temps effectif de cette vérification : non mesuré ; budget cumulé L0 non vérifiable. Aucune publication autorisée par cette seule preuve.
 
+
+## Vérification CI du correctif de focus clavier — 18 novembre 2026
+- Commit vérifié : `6e6ece67c016ff86334290d4c4d48c57f4e7e9f9` (`src/style.css`, focus des contrôles en modes sombre et projecteur).
+- Exécution CI n° 57 : https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44271870135 ; événement `push`, branche `main`, SHA identique, état `completed`, conclusion `success` (18 novembre 2026, 09:00 UTC).
+- Job « Tests et compilation — sans publication » : `success` ; installation reproductible, tests, TypeScript/Vite et consignation des preuves : toutes les étapes `success` selon l'API des jobs GitHub Actions.
+- Aucun essai réel au clavier, mesure de contraste, capture d'écran ou audit RGAA n'a été exécuté lors de ce constat. L'efficacité perceptive du focus demeure **À VÉRIFIER**.
+- Temps de travail effectif : non mesuré. Aucune validation pédagogique humaine, aucune publication autorisée par cette seule preuve.
+
 ## Contrôles encore absents ou non démontrés
 - Lint dédié : non défini dans `package.json` ; la compilation TypeScript ne le remplace pas.
 - Tests de navigation en navigateur, parcours mobile et clavier : non attestés par cette CI.
