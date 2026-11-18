@@ -25,6 +25,14 @@ try {
   });
   await page.goto(host);
   await assert.equal(await page.locator('h1').count(), 1);
+  // Vérification automatisée partielle des trois modes et d'un écran étroit.
+  // Ne remplace ni une inspection visuelle, ni un audit RGAA, ni la recette humaine.
+  const light = page.getByRole('button', { name: 'Clair' });
+  await light.focus();
+  await page.keyboard.press('Enter');
+  assert.equal(await light.getAttribute('aria-pressed'), 'true');
+  assert.equal(await page.locator('main').getAttribute('data-mode'), 'clair');
+  assert.equal(await light.evaluate(el => el === document.activeElement), true);
   const dark = page.getByRole('button', { name: 'Sombre' });
   await dark.focus();
   await page.keyboard.press('Enter');
@@ -35,6 +43,11 @@ try {
   await projector.focus();
   await page.keyboard.press('Space');
   assert.equal(await projector.getAttribute('aria-pressed'), 'true');
+  assert.equal(await page.locator('main').getAttribute('data-mode'), 'projecteur');
+  assert.equal(await projector.evaluate(el => el === document.activeElement), true);
+  await page.setViewportSize({ width: 375, height: 812 });
+  assert.equal(await projector.isVisible(), true, 'Bouton projecteur invisible sur écran étroit');
+  assert.equal(await page.locator('h1').isVisible(), true, 'Titre invisible sur écran étroit');
   await page.getByLabel('Votre discipline').selectOption({ label: 'NSI' });
   await page.getByRole('radio', { name: /Vérifier la référence/ }).check();
   assert.match(await page.getByRole('status').first().innerText(), /Bonne démarche/);
