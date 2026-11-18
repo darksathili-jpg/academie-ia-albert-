@@ -76,3 +76,12 @@ Ce document consigne des faits techniques et des lacunes, sans approbation du mi
 - Aucune nouvelle exécution des tests pendant ce constat : seules les étapes CI ont été consultées. Le motif exact de l'annulation n'est pas établi par ces métadonnées.
 - Temps effectif de travail : non mesuré ; aucune relecture pédagogique humaine, aucun audit RGAA, aucune publication autorisée. **BLOCKED** pour la recette navigateur et la clôture L0.
 - Prochaine action : déterminer la cause de l'annulation du job puis obtenir une exécution complète de la recette navigateur avant toute décision de livraison.
+
+
+## Vérification de la terminaison Chromium — 18 novembre 2026
+- Révision contrôlée : `c17d77a3802b01aa68a94fe2b8effb65e9b9876f` sur `main`.
+- Exécution CI n° 65 : https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44365454627 ; événement `push`, démarrage le 18 novembre 2026 à 18:03 UTC, état `completed`, conclusion **`success`** (API GitHub Actions consultée).
+- Job `135017842805` : `completed / success`. Étapes installation reproductible, tests, compilation TypeScript/Vite, installation Playwright, **recette navigateur M01** et consignation des preuves : toutes `success` selon l'API des jobs.
+- Le blocage précédent de terminaison du parcours Chromium est levé pour cette révision : le job s'est achevé avec succès, contrairement à l'exécution n° 63 annulée. Cette preuve ne constitue pas un audit RGAA complet, une revue scientifique et pédagogique humaine, ni une homologation institutionnelle.
+- Contrôles supplémentaires exécutés pendant la rédaction de ce constat : aucun ; seuls les résultats GitHub Actions ont été consultés. Temps effectif de l'intervention : non mesuré ; temps cumulé L0 non vérifiable.
+- **Décision : PASS pour la recette navigateur automatisée de cette révision ; BLOCKED pour la clôture globale de L0**, en attente des preuves humaines, visuelles et d'accessibilité manuelle. Aucune publication autorisée par cette seule réussite technique.
