@@ -36,6 +36,14 @@ Date de constat : 17 novembre 2026. Statut : **À VÉRIFIER — lot non clôtur�
 - L'étape `npm test` réussie inclut les trois tests statiques de `tests/privacy.test.mjs` ; aucun test navigateur ni contrôle réseau dynamique n'est démontré. La réussite ne prouve pas la conformité RGPD, RGAA ou la validation pédagogique humaine.
 - Temps effectif : non mesuré ; budget cumulé L0 non vérifiable. Aucune publication autorisée par cette seule preuve.
 
+
+## Vérification des tests statiques clavier et statuts M01 — 18 novembre 2026
+- Commit vérifié : `ba0ff6bcbc371dabcf07d8e10302e57b5b425686` (deux tests statiques ajoutés à `tests/links.test.mjs`).
+- Exécution GitHub Actions n° 55 : https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44255103542 ; événement `push`, branche `main`, SHA identique, état `completed`, conclusion `success` (18 novembre 2026, 06:57 UTC).
+- Job « Tests et compilation — sans publication » : `success` ; étapes installation reproductible, `npm test`, compilation TypeScript/Vite et consignation des preuves : toutes `success` selon les résultats des jobs GitHub Actions.
+- Ces tests inspectent le code source : ils ne démontrent ni le comportement réel du focus et du clavier dans un navigateur, ni la conformité RGAA/WCAG, ni une validation pédagogique humaine.
+- Temps effectif de cette vérification : non mesuré ; budget cumulé L0 non vérifiable. Aucune publication autorisée par cette seule preuve.
+
 ## Contrôles encore absents ou non démontrés
 - Lint dédié : non défini dans `package.json` ; la compilation TypeScript ne le remplace pas.
 - Tests de navigation en navigateur, parcours mobile et clavier : non attestés par cette CI.
