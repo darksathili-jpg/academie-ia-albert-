@@ -92,3 +92,11 @@ Ce document consigne des faits techniques et des lacunes, sans approbation du mi
 - Il s'agit d'une preuve d'exécution automatisée, **pas** d'une recette manuelle ni d'une validation pédagogique humaine. Le protocole à exécuter figure dans `docs/RECETTE_MANUELLE_M01.md` ; son statut reste **À VÉRIFIER**.
 - Aucun test supplémentaire lancé pour cette actualisation documentaire. Temps effectif non mesuré ; budget cumulé L0 non vérifiable.
 - **Décision : PASS pour les contrôles automatisés observés ; BLOCKED pour la clôture L0 et la publication de nouveaux contenus non validés.**
+
+## Recette Chromium étendue — CI n° 69 (18 novembre 2026)
+- Révision testée : `391b195a8760a10894af41f3e83f7a4bdcd0ff07`, branche `main`.
+- Exécution : https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44416538433 ; `completed / success`, 18 novembre 2026 à 22:58 UTC ; job `135198211374` : `success`.
+- Étapes vérifiées dans GitHub Actions : installation reproductible, tests, compilation TypeScript/Vite, installation Playwright, recette navigateur M01 et consignation des preuves : toutes `success`.
+- Le script `tests/browser-smoke.mjs` vérifie notamment l'activation clavier et l'état des trois modes, la conservation du focus et la visibilité du titre et du bouton projecteur à 375 × 812 pixels. Ces assertions ne prouvent pas l'absence de débordement, les contrastes réels, la conformité RGAA ou une recette manuelle.
+- Aucun test supplémentaire exécuté pendant cette consignation ; temps effectif non mesuré, budget cumulé L0 non vérifiable. Aucune validation pédagogique humaine ni publication.
+- **Décision : PASS pour la CI et la recette automatisée de cette révision ; BLOCKED pour la clôture L0.** Prochaine action : recette manuelle documentée dans `docs/RECETTE_MANUELLE_M01.md` et relecture humaine distincte.
