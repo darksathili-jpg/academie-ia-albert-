@@ -4,7 +4,8 @@ import { spawn } from 'node:child_process';
 import { chromium } from 'playwright';
 
 const host = 'http://127.0.0.1:4173';
-const server = spawn('npm', ['run', 'dev', '--', '--host', '127.0.0.1', '--port', '4173', '--strictPort'], { stdio: 'pipe' });
+// Démarrer Vite directement : le wrapper npm laisse des processus enfants actifs en CI.
+const server = spawn(process.execPath, ['node_modules/vite/bin/vite.js', '--host', '127.0.0.1', '--port', '4173', '--strictPort'], { stdio: 'ignore' });
 let browser;
 const waitForServer = async () => {
   for (let i = 0; i < 60; i++) {
