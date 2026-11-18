@@ -52,9 +52,9 @@ Date de constat : 17 novembre 2026. Statut : **À VÉRIFIER — lot non clôtur�
 - Aucun essai réel au clavier, mesure de contraste, capture d'écran ou audit RGAA n'a été exécuté lors de ce constat. L'efficacité perceptive du focus demeure **À VÉRIFIER**.
 - Temps de travail effectif : non mesuré. Aucune validation pédagogique humaine, aucune publication autorisée par cette seule preuve.
 
-## Contrôles encore absents ou non démontrés
+## Contrôles encore absents ou non démontrés (état actualisé au 18 novembre 2026)
 - Lint dédié : non défini dans `package.json` ; la compilation TypeScript ne le remplace pas.
-- Tests de navigation en navigateur, parcours mobile et clavier : non attestés par cette CI.
+- Parcours navigateur automatisé M01 : **attesté** par les CI n° 65 et n° 66 (étape Chromium `success`). Recette **manuelle** clavier, focus perceptible, zoom et mobile : non attestée ; les tests automatisés ne remplacent pas ces observations.
 - Audit d'accessibilité automatisé et contrôle manuel RGAA : non attestés.
 - Liens internes : contrôle statique partiel automatisé, exécuté avec succès sur `d579e67` ; audit exhaustif des liens dynamiques et des licences des ressources : non attesté.
 - Relecture scientifique et pédagogique humaine nominative, datée et versionnée : **non réalisée / non fournie**.
@@ -65,7 +65,7 @@ Date de constat : 17 novembre 2026. Statut : **À VÉRIFIER — lot non clôtur�
 **PASS technique limité** pour les étapes CI observées sur la révision citée ; **BLOCKED pour la clôture L0** et pour toute déclaration de validation pédagogique ou de conformité institutionnelle. Ne pas publier de nouveaux contenus pédagogiques comme « VALIDÉS » sans preuve de relecture humaine.
 
 ## Prochaine action prioritaire
-Mettre en place et exécuter un parcours navigateur minimal avec contrôle clavier, puis joindre son résultat au rapport. Ne pas confondre ajout d'un test et réussite de son exécution. Le passage à L1 nécessite un arbitrage explicite des preuves encore manquantes.
+Exécuter le protocole `docs/RECETTE_MANUELLE_M01.md` sur une révision identifiée, relever les observations visuelles et clavier avec captures sans données personnelles, puis obtenir séparément la relecture pédagogique humaine. Le passage à L1 nécessite un arbitrage explicite des preuves encore manquantes.
 
 Ce document consigne des faits techniques et des lacunes, sans approbation du ministère, de la CNIL ou d'un réviseur humain.
 
@@ -85,3 +85,10 @@ Ce document consigne des faits techniques et des lacunes, sans approbation du mi
 - Le blocage précédent de terminaison du parcours Chromium est levé pour cette révision : le job s'est achevé avec succès, contrairement à l'exécution n° 63 annulée. Cette preuve ne constitue pas un audit RGAA complet, une revue scientifique et pédagogique humaine, ni une homologation institutionnelle.
 - Contrôles supplémentaires exécutés pendant la rédaction de ce constat : aucun ; seuls les résultats GitHub Actions ont été consultés. Temps effectif de l'intervention : non mesuré ; temps cumulé L0 non vérifiable.
 - **Décision : PASS pour la recette navigateur automatisée de cette révision ; BLOCKED pour la clôture globale de L0**, en attente des preuves humaines, visuelles et d'accessibilité manuelle. Aucune publication autorisée par cette seule réussite technique.
+
+## Actualisation des preuves — CI n° 66 (18 novembre 2026)
+- Exécution : https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44386020133 ; job `135090694937`, `completed / success`, consulté via GitHub Actions.
+- Étapes `Vérifier l'installation reproductible`, `Exécuter les tests`, `Vérifier TypeScript et compiler Vite`, `Installer Playwright pour la recette navigateur (sans modifier le verrou)`, `Exécuter la recette navigateur M01` et `Consigner les preuves techniques` : toutes `completed / success`.
+- Il s'agit d'une preuve d'exécution automatisée, **pas** d'une recette manuelle ni d'une validation pédagogique humaine. Le protocole à exécuter figure dans `docs/RECETTE_MANUELLE_M01.md` ; son statut reste **À VÉRIFIER**.
+- Aucun test supplémentaire lancé pour cette actualisation documentaire. Temps effectif non mesuré ; budget cumulé L0 non vérifiable.
+- **Décision : PASS pour les contrôles automatisés observés ; BLOCKED pour la clôture L0 et la publication de nouveaux contenus non validés.**
