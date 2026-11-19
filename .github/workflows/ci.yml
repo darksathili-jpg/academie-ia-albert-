@@ -41,6 +41,14 @@ jobs:
       - name: Exécuter la recette navigateur M01
         id: browser_test
         run: node tests/browser-smoke.mjs
+      - name: Archiver les captures M01 pour inspection humaine
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: captures-m01-${{ github.sha }}
+          path: artifacts/recette-m01/*.png
+          if-no-files-found: error
+          retention-days: 7
       - name: Consigner les preuves techniques
         if: always()
         env:
