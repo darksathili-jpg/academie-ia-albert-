@@ -35,4 +35,6 @@ Le réviseur enseignant consigne : version, date, rôle, sources institutionnell
 - Décision de publication : **BLOQUÉE** tant que les contrôles bloquants et la validation humaine ne sont pas établis.
 
 ## État technique connu avant cette recette
-GitHub Actions n° 66, sur `feec15405de77e3b4f5f948231673e2075c29e91`, est `completed/success` le 18 novembre 2026 (UTC) : installation, tests, compilation et recette navigateur automatisée M01 réussis selon les étapes GitHub. Voir https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44386020133 . Cela ne prouve **aucune** des observations manuelles demandées ci-dessus.
+- Révision de référence pour préparer la recette : `896ed4b1e48d78d5b5cb45cde10b41790109f447` (`main`). Exécution GitHub Actions https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44441626776, démarrée le 19 novembre 2026 à 02:04 UTC, état `completed`, conclusion `success` (métadonnées de l'exécution consultées).
+- La réussite globale de ce workflow ne remplace pas la vérification de ses étapes détaillées et ne démontre **aucune** des observations manuelles demandées ci-dessus. Avant la recette, vérifier que le SHA de la version ouverte correspond bien au SHA consigné ; sinon noter le SHA réellement examiné et vérifier sa CI.
+- La recette visuelle et clavier ainsi que la relecture pédagogique humaine restent **NON RÉALISÉES**. Aucune conformité RGAA ni publication n'est déduite de cette CI.
