@@ -48,6 +48,15 @@ try {
   await page.setViewportSize({ width: 375, height: 812 });
   assert.equal(await projector.isVisible(), true, 'Bouton projecteur invisible sur écran étroit');
   assert.equal(await page.locator('h1').isVisible(), true, 'Titre invisible sur écran étroit');
+  // Un élément visible ne garantit pas l'absence de défilement horizontal.
+  const mobileOverflow = await page.evaluate(() => ({
+    documentWidth: document.documentElement.scrollWidth,
+    viewportWidth: document.documentElement.clientWidth,
+  }));
+  assert.ok(
+    mobileOverflow.documentWidth <= mobileOverflow.viewportWidth + 1,
+    `Débordement horizontal sur écran étroit : ${mobileOverflow.documentWidth}px > ${mobileOverflow.viewportWidth}px`,
+  );
   await page.getByLabel('Votre discipline').selectOption({ label: 'NSI' });
   await page.getByRole('radio', { name: /Vérifier la référence/ }).check();
   assert.match(await page.getByRole('status').first().innerText(), /Bonne démarche/);
