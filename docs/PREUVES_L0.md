@@ -100,3 +100,11 @@ Ce document consigne des faits techniques et des lacunes, sans approbation du mi
 - Le script `tests/browser-smoke.mjs` vérifie notamment l'activation clavier et l'état des trois modes, la conservation du focus et la visibilité du titre et du bouton projecteur à 375 × 812 pixels. Ces assertions ne prouvent pas l'absence de débordement, les contrastes réels, la conformité RGAA ou une recette manuelle.
 - Aucun test supplémentaire exécuté pendant cette consignation ; temps effectif non mesuré, budget cumulé L0 non vérifiable. Aucune validation pédagogique humaine ni publication.
 - **Décision : PASS pour la CI et la recette automatisée de cette révision ; BLOCKED pour la clôture L0.** Prochaine action : recette manuelle documentée dans `docs/RECETTE_MANUELLE_M01.md` et relecture humaine distincte.
+
+## Contrôle du débordement mobile — CI n° 71 (19 novembre 2026)
+- Révision vérifiée : `8d7c07769238112c8d0fccd25fc164b471cc49e2`, branche `main`.
+- Exécution : https://github.com/darksathili-jpg/academie-ia-albert-/actions/runs/44433335747 ; événement `push`, état `completed`, conclusion `success` (19 novembre 2026, 00:59 UTC).
+- Job `135255940110` : `completed / success`. Étapes installation reproductible, tests, compilation TypeScript/Vite, installation Playwright, recette navigateur M01 et consignation : toutes `success` selon l'API GitHub Actions.
+- Le nouveau contrôle Playwright compare `document.documentElement.scrollWidth` à `document.documentElement.clientWidth` sur une fenêtre de 375 × 812 pixels (tolérance de 1 px). La réussite atteste cette assertion dans le parcours automatisé testé ; elle ne garantit pas tous les écrans, zooms ou contenus.
+- Aucun test supplémentaire exécuté pendant ce constat documentaire. Temps effectif non mesuré ; budget L0 cumulé non vérifiable. Recette manuelle, audit RGAA et validation pédagogique humaine non réalisés.
+- **Décision : PASS pour cette CI et ce contrôle automatisé ; BLOCKED pour la clôture L0 et toute validation humaine ou institutionnelle.**
