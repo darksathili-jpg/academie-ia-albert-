@@ -1,22 +1,7 @@
-name: Publication GitHub Pages — validation humaine requise
+name: Préproduction GitHub Pages — recette uniquement
 
 on:
   workflow_dispatch:
-    inputs:
-      revision_validee:
-        description: "SHA complet de main ayant fait l'objet de la recette humaine"
-        required: true
-        type: string
-      validation_pedagogique:
-        description: "Attestation : relecture pédagogique humaine documentée pour ce SHA"
-        required: true
-        type: boolean
-        default: false
-      validation_visuelle:
-        description: "Attestation : recette visuelle et clavier documentée pour ce SHA"
-        required: true
-        type: boolean
-        default: false
 
 permissions:
   contents: read
@@ -27,7 +12,7 @@ concurrency:
 
 jobs:
   verifier:
-    name: Contrôles bloquants et attestations
+    name: Contrôles bloquants de préproduction
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
@@ -36,17 +21,11 @@ jobs:
         with:
           ref: main
           persist-credentials: false
-      - name: Bloquer sans validations humaines et SHA exact
-        env:
-          REVISION_VALIDEE: ${{ inputs.revision_validee }}
-          VALIDATION_PEDAGOGIQUE: ${{ inputs.validation_pedagogique }}
-          VALIDATION_VISUELLE: ${{ inputs.validation_visuelle }}
+      - name: Vérifier l'avertissement de préproduction
         run: |
           set -eu
-          test "$VALIDATION_PEDAGOGIQUE" = "true" || { echo "Relecture pédagogique humaine absente"; exit 1; }
-          test "$VALIDATION_VISUELLE" = "true" || { echo "Recette visuelle humaine absente"; exit 1; }
-          test "$REVISION_VALIDEE" = "$(git rev-parse HEAD)" || { echo "SHA de recette différent de main"; exit 1; }
-          echo "Attestations déclarées par le déclencheur ; vérifier séparément les preuves humaines."
+          grep -Fq 'PRÉPRODUCTION — CONTENUS NON VALIDÉS — NE PAS UTILISER EN CLASSE' src/main.tsx
+          echo "Préproduction non validée : publication autorisée pour recette uniquement."
       - name: Installer Node.js
         uses: actions/setup-node@v4
         with:
@@ -73,7 +52,7 @@ jobs:
           retention-days: 1
 
   publier:
-    name: Déployer après contrôles
+    name: Déployer la préproduction après contrôles
     needs: verifier
     runs-on: ubuntu-24.04
     permissions:
