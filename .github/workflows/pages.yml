@@ -1,0 +1,99 @@
+name: Publication GitHub Pages — validation humaine requise
+
+on:
+  workflow_dispatch:
+    inputs:
+      revision_validee:
+        description: "SHA complet de main ayant fait l'objet de la recette humaine"
+        required: true
+        type: string
+      validation_pedagogique:
+        description: "Attestation : relecture pédagogique humaine documentée pour ce SHA"
+        required: true
+        type: boolean
+        default: false
+      validation_visuelle:
+        description: "Attestation : recette visuelle et clavier documentée pour ce SHA"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: academie-ia-albert-pages
+  cancel-in-progress: false
+
+jobs:
+  verifier:
+    name: Contrôles bloquants et attestations
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Récupérer main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Bloquer sans validations humaines et SHA exact
+        env:
+          REVISION_VALIDEE: ${{ inputs.revision_validee }}
+          VALIDATION_PEDAGOGIQUE: ${{ inputs.validation_pedagogique }}
+          VALIDATION_VISUELLE: ${{ inputs.validation_visuelle }}
+        run: |
+          set -eu
+          test "$VALIDATION_PEDAGOGIQUE" = "true" || { echo "Relecture pédagogique humaine absente"; exit 1; }
+          test "$VALIDATION_VISUELLE" = "true" || { echo "Recette visuelle humaine absente"; exit 1; }
+          test "$REVISION_VALIDEE" = "$(git rev-parse HEAD)" || { echo "SHA de recette différent de main"; exit 1; }
+          echo "Attestations déclarées par le déclencheur ; vérifier séparément les preuves humaines."
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Installer les dépendances
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Exécuter les tests
+        run: npm test
+      - name: Compiler le site
+        run: npm run build
+      - name: Installer Chromium
+        run: |
+          npm install --no-save --package-lock=false --ignore-scripts --no-audit --no-fund playwright@1.56.1
+          npx playwright install chromium
+      - name: Recette automatisée M01
+        run: node tests/browser-smoke.mjs
+      - name: Transmettre le site compilé
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-pages-valide
+          path: dist/
+          if-no-files-found: error
+          retention-days: 1
+
+  publier:
+    name: Déployer après contrôles
+    needs: verifier
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - name: Télécharger le site contrôlé
+        uses: actions/download-artifact@v4
+        with:
+          name: site-pages-valide
+          path: dist/
+      - name: Préparer GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Envoyer l'artefact Pages
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist/
+      - name: Publier sur GitHub Pages
+        id: deploiement
+        uses: actions/deploy-pages@v4
