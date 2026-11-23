@@ -18,7 +18,8 @@ Chaque ressource pédagogique porte : discipline, niveau, objectif, capacités a
 - Pas d'obligation de créer un compte auprès d'un service d'IA grand public ; parcours utilisable sans Albert.
 - Les conditions d'accès à Albert doivent être vérifiées ; démonstrations enregistrées clairement identifiées, jamais présentées comme des appels réels.
 - Pas de clé API dans le code client, GitHub, les journaux ou les captures.
-- Les contenus générés ne deviennent publics qu'après audit pédagogique humain ; aucune notation automatique d'élève à effet décisionnel.
+- Les contenus pédagogiques destinés à la diffusion et présentés comme validés ne deviennent publics qu'après audit pédagogique humain ; aucune notation automatique d'élève à effet décisionnel.
+- Exception de préproduction explicitement autorisée par le responsable du projet le 23 novembre 2026 : un prototype public limité à la recette visuelle peut être mis en ligne sur GitHub Pages si les contrôles techniques bloquants sont verts, s'il porte visiblement la mention « PRÉPRODUCTION — CONTENUS NON VALIDÉS — NE PAS UTILISER EN CLASSE », et s'il ne comporte ni données personnelles réelles, ni clé API, ni service Albert actif. Cette exception ne constitue pas une validation pédagogique et ne permet pas de présenter le prototype comme une formation publiée ou approuvée.
 - Usage critique, transparent, frugal et à plus-value pédagogique justifiée ; pas de détecteur automatique d'IA comme preuve de fraude.
 - Contrôle des licences et droits d'auteur des ressources intégrées.
 - Accessibilité : objectif RGAA/WCAG à auditer ; ne pas prétendre à la conformité avant audit.
